@@ -5,7 +5,6 @@ import React, { useState, useEffect } from 'react';
 function App() {
 
   const [data, setData] = useState('');
-  const name = process.env.REACT_APP_NAME;
 
   useEffect(() => {
     (async function () {
@@ -29,7 +28,6 @@ function App() {
         >
           {data}
         </a>
-        <p>{name}</p>
       </header>
     </div>
   );
