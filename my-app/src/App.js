@@ -5,29 +5,27 @@ import React, { useState, useEffect } from 'react';
 function App() {
 
   const [data, setData] = useState('');
+  const [flag, setFlag] = useState(false);
 
-  useEffect(() => {
-    (async function () {
-      const { text } = await( await fetch(`/api/message`)).json();
-      setData(text);
-    })();
-  });
+
+  const onButtonClick = async () => {
+    const { text } = await( await fetch(`/api/message`)).json();
+    setData(text);
+    setFlag(true);
+  }
 
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>
-         Hello from browser
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {data}
-        </a>
+        <h1>
+         Welcome to Azure Static Web App Demo
+        </h1>
+        <button className="button" type="button" onClick={onButtonClick}>Trigger Function</button>
+        {flag &&  (<div>
+          <p>This is the message from Azure Function</p>
+          <b>{data}</b>
+        </div>)}
       </header>
     </div>
   );
